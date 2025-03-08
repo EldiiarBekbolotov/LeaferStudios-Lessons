@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono:wght@400;500&&family=Material+Icons&display=swap" rel="stylesheet">
+		<meta charset="utf-8">
+		<title>LeaferStudios Lessons</title>
+		<script type="application/javascript">
+			var articles = [{
+				title: "There seems to be an error",
+				content: "We could not fetch the GitHub files for all lessons!",
+				type: "Tutorial",
+			}];
+		</script>
+		<script src="https://cdn.jsdelivr.net/gh/EldiiarBekbolotov/LeaferStudios-Lessons@main/files.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #FFF;
+				font-family: "Roboto Mono", arial;
+				padding: 0;
+				margin: 0;
+				height: 100%;
+			}
+
+			@keyframes fade-in {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 1;
+				}
+			}
+
+			:focus {
+				outline: none;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-family: "Roboto Mono", arial;
+				font-weight: 500;
+			}
+
+			p {
+				font-family: "Roboto", arial;
+				font-weight: 400;
+				color: #616161;
+				line-height: 24px;
+			}
+
+			p b {
+				font-weight: 500;
+				color: #000;
+			}
+
+			.jumbo {
+				text-align: center;
+				padding: 45px;
+				border-bottom: 1px solid gainsboro;
+			}
+
+			.par {
+				padding: 45px;
+			}
+
+			.scene {
+				padding-bottom: 55px;
+				display: none;
+			}
+
+			nav#top {
+				height: 55px;
+				display: flex;
+				justify-content: space-between;
+				background-color: #FFF;
+				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.14);
+			}
+
+			nav#top a.nav-link {
+				color: #616161;
+				text-decoration: none;
+				line-height: 55px;
+				padding: 0 16px;
+				font-weight: 500;
+				transition: all 0.1s;
+			}
+
+			nav#top a.nav-link:hover {
+				background-color: rgb(245, 245, 245);
+				color: rgb(245, 17, 17);
+			}
+
+			nav#top a.nav-link:active {
+				background-color: rgba(252, 55, 0, 0.22);
+				color: rgb(245, 17, 17);
+			}
+
+			nav#top a.nav-link i.material-icons {
+				vertical-align: middle;
+			}
+
+			nav#bottom {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				border-top: 1px solid gainsboro;
+				height: 55px;
+				display: flex;
+				justify-content: center;
+				z-index: 1000;
+				background-color: #FFF;
+			}
+
+			nav#bottom a.nav-link {
+				color: #616161;
+				font-weight: 500;
+				text-decoration: none;
+				height: 55px;
+				text-align: center;
+				padding: 0 20px;
+				transition: all 0.1s;
+				font-size: 16px;
+			}
+
+			nav#bottom a.nav-link:hover {
+				background-color: rgb(247, 247, 247);
+				color: rgb(245, 17, 17);
+			}
+
+			nav#bottom a.nav-link:focus {
+				background-color: rgba(252, 55, 0, 0.22);
+				color: rgb(245, 17, 17);
+			}
+
+			nav#bottom a.nav-link i.material-icons {
+				display: block;
+				margin-top: 7px;
+				vertical-align: middle;
+			}
+
+			button {
+				background-color: rgb(245, 17, 17);
+				color: #FFF;
+				height: 36px;
+				padding: 0 16px;
+				border: none;
+				border-radius: 4px;
+				box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+				font-weight: 500;
+				font-size: 14px;
+				letter-spacing: 0.1px;
+				font-family: "Roboto Mono", arial;
+				cursor: pointer;
+				transition: all 0.1s;
+			}
+
+			button:hover {
+				background-color: rgb(219, 15, 15);
+				box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+			}
+
+			button:focus {
+				background-color: rgb(189, 0, 0);
+				box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+			}
+
+			#signup {
+				position: fixed;
+				height: 100%;
+				bottom: -200%;
+				left: 0;
+				right: 0;
+				background-color: #FFF;
+				z-index: 1001;
+				transition: all 0.5s;
+			}
+
+			#signup.open {
+				bottom: 0px;
+			}
+
+			#signup .close-button {
+				color: #616161;
+				position: absolute;
+				right: 7px;
+				top: 7px;
+				padding: 10px;
+				transition: all 0.1s;
+			}
+
+			#signup .close-button:hover {
+				color: #000;
+			}
+
+			input {
+				height: 34px;
+				padding: 0 10px;
+				border: 2px solid gainsboro;
+				transition: all 0.1s;
+				font-family: "Roboto", arial;
+				font-weight: 500;
+			}
+
+			input:focus {
+				border-color: rgb(255, 103, 43);
+			}
+
+			i {
+				vertical-align: middle;
+			}
+
+			a {
+				color: rgb(25, 96, 250);
+				text-decoration: none;
+				transition: all 0.1s;
+			}
+
+			a:hover {
+				text-decoration: underline;
+				color: rgb(16, 74, 209);
+			}
+
+			#m3 {
+				position: absolute;
+				background-color: #FFF;
+				right: 5px;
+				margin-top: 5px;
+				border-radius: 4px;
+				box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1), -1px 3px 4px rgba(0, 0, 0, 0.1), 1px 3px 4px rgba(0, 0, 0, 0.1);
+				transition: all 0.1s;
+				opacity: 0;
+				transform: translate(-60px, -350px) scale(2);
+				z-index: 1000;
+			}
+
+			#m3.on {
+				animation: startup 0.3s forwards;
+			}
+
+			@keyframes startup {
+				0% {
+					transform: translate(-60px, -350px) scale(2);
+					opacity: 0;
+				}
+
+				100% {
+					transform: translate(0px, 0px) scale(1);
+					opacity: 1;
+				}
+			}
+
+			#m3 a {
+				display: block;
+				color: #000;
+				font-family: "Roboto", arial;
+				padding: 16px 16px;
+				transition: all 0.12s;
+			}
+
+			#m3 a:hover {
+				background-color: rgba(0, 0, 0, 0.06);
+				text-decoration: none;
+			}
+
+			#m3 a:focus {
+				background-color: rgba(0, 0, 0, 0.14);
+			}
+
+			#toast-el {
+				background-color: #333;
+				border-radius: 2px;
+				font-family: "Roboto", arial;
+				font-size: 16px;
+				color: white;
+				position: fixed;
+				left: 15px;
+				bottom: 80px;
+				z-index: 101;
+				visibility: hidden;
+				min-width: 144px;
+				padding: 12px 16px;
+				user-select: none;
+			}
+
+			#toast-el.visible {
+				visibility: visible;
+				animation: toastStart 0.15s, toastEnd 0.15s calc(1.0s - 0.15s);
+			}
+
+			@keyframes toastStart {
+				0% {
+					transform: translate(0px, 100%)scale(1);
+					opacity: 0.5;
+				}
+
+				100% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+
+			@keyframes toastEnd {
+				0% {
+					transform: translate(0px, 0px)scale(1);
+					opacity: 1;
+				}
+
+				100% {
+					transform: translate(0px, 100%)scale(0.95);
+					opacity: 0;
+				}
+			}
+
+			#search {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				background-color: #FFF;
+				transition: all 0.13s;
+				display: flex;
+				justify-content: space-between;
+				transform: translate(-100%, 0);
+			}
+
+			#search.on {
+				transform: translate(0, 0);
+			}
+
+			#search input {
+				height: 55px;
+				width: 100%;
+				border: 1px solid white;
+			}
+
+			#search input:focus {
+				background-color: rgba(0, 0, 0, 0.04);
+				border: 1px solid rgb(255, 51, 0);
+			}
+
+			#search .search-link {
+				height: 55px;
+				padding: 0 16px;
+				line-height: 55px;
+				color: #616161;
+				border: 1px solid rgb(255, 255, 255);
+			}
+
+			#search .search-link i.material-icons {
+				vertical-align: middle;
+			}
+
+			#search .search-link:hover {
+				color: rgb(245, 17, 17);
+			}
+
+			#search .search-link:focus {
+				background-color: rgba(0, 0, 0, 0.04);
+				color: rgb(245, 17, 17);
+				border: 1px solid rgb(255, 51, 0);
+			}
+
+			.tutorial-at {
+				background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Step6skasm.PNG/245px-Step6skasm.PNG");
+				background-size: 150%;
+				box-shadow: inset 0px 100px 50px rgba(0, 0, 0, 0.7);
+				font-family: "Roboto", arial;
+				padding: 10px 14px;
+				transition: all 0.1s;
+				user-select: none;
+				margin-bottom: 15px;
+				color: #FFF;
+			}
+
+			.tutorial-at p {
+				color: #FFF;
+			}
+
+			.tutorial-at:hover {
+				transform: scale(1.05);
+			}
+
+			#article {
+				padding: 40px;
+			}
+
+			.article-at {
+				background-color: rgb(255, 255, 255);
+				border: 2px solid gainsboro;
+				font-family: "Roboto", arial;
+				padding: 10px 24px;
+				transition: all 0.1s;
+				user-select: none;
+				margin-bottom: 15px;
+				border-radius: 4px;
+			}
+
+			.article-at:hover {
+				transform: scale(1.05);
+				box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.article-at:active {
+				transform: scale(1.0);
+			}
+
+			.article-at h3 {
+				color: rgb(217, 17, 17);
+			}
+
+			#search-results {
+				padding: 45px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="search"> <a class="search-link" href="javascript:openSearch();"> <i class="material-icons">close</i> </a> <input id='search-input' placeholder="Search for articles, users, and more..." /> <a class="search-link" href="javascript:performSearch();"> <i class="material-icons">search</i> </a> </div>
+		<nav id="top"> <a class="nav-link" href="javascript:openSearch();"> <i class="material-icons">search</i> </a> <a class="nav-link" href="javascript:"> LeaferStudios<span style='background-color:red;color:white;padding:4px;margin-left:5px;'>Lessons</span> </a> <a class="nav-link" href="javascript:openM3();"> <i class="material-icons">more_vert</i> </a> </nav>
+		<div id="m3"> <a href="javascript:openHelp();">Help</a> <a href="https://www.khanacademy.org/computer-programming/leaferstudios/4934504502870016" target="_blank">Subscribe</a> </div>
+		<div class="scene" id="explore" style="display:block;">
+			<div class="par">
+				<h2>All Lessons</h2>
+				<div id="all-articles"></div>
+			</div>
+		</div>
+		<div class="scene" id="account">
+			<div class="div-loggedOut">
+				<div class="par">
+					<h2>About LeaferStudios Lessons</h2>
+					<p><a href='https://www.khanacademy.org/profile/kaid_553656479258879622339276/projects' target='_blank'>@LeaferStudios</a> teaches users key ideas about computer science including programming, web development, competitive programming, cybersecurity, artificial intelligence, data and more.</p>
+
+					<h3>About the Author</h3>
+					<p>Only on the Khan Academy Computer Science platform: 320,000 lines of code written. x2 Clash of Code Winner & 2024 Champion. x8 Golden Winstons. x3 Primavera Winner. 1x TCO Winner. 1x Clash of Code Host.<br /><br />Prior to starting <em>LeaferStudios Lessons</em>, I have released 10+ tutorials and have helped hundreds of members of the community learn new skills, fix and improve their code.</p>
+					<h3>Connect and Learn</h3>
+					<p>Want to improve your skills with like-minded people? Join <a href='https://www.khanacademy.org/computer-programming/team-alpha/4940793064636416' target='_blank'>Team Alpha</a>, the largest community coding team on Khan Academy, also created by @LeaferStudios. From there, I can answer your questions personally.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="scene">
+			<div class="par">
+				<div id="content"></div>
+			</div>
+		</div>
+		<div class="scene" id="article"></div>
+		<div class="scene" id="search-results"></div>
+		<div class="scene" id="help-page">
+			<div class="par">
+				<h2>Help & Feedback</h2>
+				<p>If you noticed any incorrect information, bugs, or want to share feedback, please do it under the Khan Academy release of <a href='#' target='_blank'>LeaferStudios Lessons</a>. I will not be replying to the GitHub repository issues.</p>
+			</div>
+		</div>
+		<nav id="bottom"> <a class="nav-link" href="javascript:switchPage(0);"> <i class="material-icons">language</i> <span>Blog</span> </a> <a class="nav-link" href="javascript:switchPage(1);"> <i class="material-icons">info_outline</i> <span>About</span> </a></nav>
+		<div id="toast-el"> <span id="toast-inner">JavaScript</span> </div>
+		<script type="application/javascript">
+			var scenes = document.getElementsByClassName("scene");
+			var switchPage = function(index) {
+				for (var i = 0; i < scenes.length; i++) {
+					scenes[i].style.display = "none";
+				}
+				window.scroll(0, 0);
+				scenes[index].style.display = "block";
+			};
+			switchPage(0);
+			var toastInner = "Snackbar";
+			var toast = function(timeU) {
+				var toastEl = document.getElementById("toast-el");
+				toastEl.className = "visible";
+				toastEl.innerHTML = toastInner;
+				setTimeout(function() {
+					toastEl.className = toastEl.className.replace("visible", "");
+				}, timeU);
+			};
+			var openSearch = function() {
+				document.getElementById("search").classList.toggle("on");
+			};
+			var openM3 = function() {
+				document.getElementById("m3").classList.toggle("on");
+			};
+			var _li = document.getElementById("login-input");
+			var home = document.getElementById("explore");
+			var account = document.getElementById("account");
+			var allArticles = document.getElementById("all-articles");
+			var openArticle = function(z) {
+				document.getElementById("article").innerHTML = "<button onclick='switchPage(0);'><i class='material-icons'>arrow_back</i></button><h1>" + articles[z].title + "</h1><p>" + articles[z].content + "</p>";
+				showSceneById("article");
+			};
+			var loadNews = function() {
+				allArticles.innerHTML = "";
+				for (var i = 0; i < articles.length; i++) {
+					var at = document.createElement("a");
+					switch (articles[i].type) {
+						case "Tutorial":
+							at.innerHTML = "<a href='javascript:openArticle(" + i + ");' style='text-decoration:none;'><div class='article-at' style='background-color:rgb(255, 231, 224);border-color:rgb(250, 84, 55);'><h3>" + articles[i].title + "</h3><p style='color:#000;'>" + articles[i].content + "</p></div></a>";
+							break;
+						case "Article":
+							at.innerHTML = "<a href='javascript:openArticle(" + i + ");' style='text-decoration:none;'><div class='article-at'><h3>" + articles[i].title + "</h3><p>by " + articles[i].by + "</p></div></a>";
+							break;
+					}
+					allArticles.innerHTML += at.innerHTML;
+				}
+			};
+			loadNews();
+			var showSceneById = function(id) {
+				var all = document.getElementsByClassName("scene");
+				for (var i = 0; i < all.length; i++) {
+					all[i].style.display = "none";
+				}
+				document.getElementById(id).style.display = "block";
+			};
+			var performSearch = function() {
+				var query = document.querySelector("#search input").value.toLowerCase();
+				var sr = document.getElementById("search-results");
+				var html = "";
+				if (query.trim() === "") {
+					html = "<h2>Please enter a search query.</h2>";
+				} else {
+					var results = [];
+					for (var i = 0; i < articles.length; i++) {
+						if (articles[i].title.toLowerCase().includes(query) || articles[i].content.toLowerCase().includes(query)) {
+							results.push({
+								index: i,
+								article: articles[i]
+							});
+						}
+					}
+					if (results.length === 0) {
+						html = "<h2>No results found</h2>";
+					} else {
+						html = "<h2>Search Results</h2>";
+						for (var j = 0; j < results.length; j++) {
+							var art = results[j].article;
+							html += "<a href='javascript:openArticle(" + results[j].index + ");' style='text-decoration:none;'><div class='article-at'><h3>" + art.title + "</h3>";
+							if (art.by) {
+								html += "<p>by " + art.by + "</p>";
+							} else {
+								html += "<p>" + art.content + "</p>";
+							}
+							html += "</div></a>";
+						}
+					}
+				}
+				sr.innerHTML = html;
+				showSceneById("search-results");
+			};
+			document.getElementById("search-input").addEventListener("keyup", function(event) {
+				if (event.key === "Enter") {
+					performSearch();
+				}
+			});
+			var openHelp = function() {
+				showSceneById("help-page");
+			};
+		</script>
+	</body>
+
+</html>
