@@ -2,9 +2,9 @@
 <html>
 
 	<head>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono:wght@400;500&&family=Material+Icons&display=swap" rel="stylesheet">
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Language" content="en_US" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" /><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" /><link rel="manifest" href="/site.webmanifest" /><meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>LeaferStudios Lessons</title>
@@ -15,57 +15,25 @@
 				type: "Tutorial",
 			}];
 		</script>
-		<script src="https://cdn.jsdelivr.net/gh/EldiiarBekbolotov/LeaferStudios-Lessons@main/files.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/EldiiarBekbolotov/LeaferStudios-Lessons/files.js"></script>
 		<style>
 			html,
 			body {
-				background-color: #FFF;
+				background-color: #FAFAFA;
 				font-family: "Roboto Mono", arial;
 				padding: 0;
 				margin: 0;
 				height: 100%;
 			}
 
-			/* CODE CSS */
-			pre code {
-				font-size: 12px;
-				line-height: 16px;
-				border-radius: 2px;
-				padding: 10px 15px !important;
-			}
-
-			code {
-				color: rgb(115, 115, 115);
-			}
-
-			pre code::-webkit-scrollbar {
-				height: 3px;
-			}
-
-			pre code::-webkit-scrollbar-track {
-				background: transparent;
-			}
-
-			pre code::-webkit-scrollbar-thumb {
-				background-color: rgba(0, 0, 0, 0.1);
-				border-radius: 220px;
-				height: 3px;
-			}
-
-			pre code::-webkit-scrollbar-thumb:hover {
-				background-color: rgba(0, 0, 0, 0.25);
-			}
-
-			pre code::-webkit-scrollbar-thumb:active {
-				background-color: rgba(0, 0, 0, 0.4);
-			}
-
 			@keyframes fade-in {
-				from {
+				0% {
 					opacity: 0;
 				}
-
-				to {
+                20% {
+                    opacity: 0;
+                }
+				100% {
 					opacity: 1;
 				}
 			}
@@ -426,6 +394,7 @@
 
 			#article {
 				padding: 40px;
+				padding-bottom: 145px;
 			}
 
 			.article-at {
@@ -460,7 +429,7 @@
 
 	<body>
 		<div id="search"> <a class="search-link" href="javascript:openSearch();"> <i class="material-icons">close</i> </a> <input id='search-input' placeholder="Search for articles, users, and more..." /> <a class="search-link" href="javascript:performSearch();"> <i class="material-icons">search</i> </a> </div>
-		<nav id="top"> <a class="nav-link" href="javascript:openSearch();"> <i class="material-icons">search</i> </a> <a class="nav-link" href="javascript:"> LeaferStudios<span style='background-color:red;color:white;padding:4px;margin-left:5px;'>Lessons</span> </a> <a class="nav-link" href="javascript:openM3();"> <i class="material-icons">more_vert</i> </a> </nav>
+		<nav id="top"> <a class="nav-link" href="javascript:openSearch();"> <i class="material-icons">search</i> </a> <a class="nav-link" href="javascript:switchPage(0);"> LeaferStudios<span style='background-color:red;color:white;padding:4px;margin-left:5px;border-radius:10px;'>Lessons</span> </a> <a class="nav-link" href="javascript:openM3();"> <i class="material-icons">more_vert</i> </a> </nav>
 		<div id="m3"> <a href="javascript:openHelp();">Help</a> <a href="https://www.khanacademy.org/computer-programming/leaferstudios/4934504502870016" target="_blank">Subscribe</a> </div>
 		<div class="scene" id="explore" style="display:block;">
 			<div class="par">
@@ -497,8 +466,11 @@
 		</div>
 		<nav id="bottom"> <a class="nav-link" href="javascript:switchPage(0);"> <i class="material-icons">language</i> <span>Blog</span> </a> <a class="nav-link" href="javascript:switchPage(1);"> <i class="material-icons">info_outline</i> <span>About</span> </a></nav>
 		<div id="toast-el"> <span id="toast-inner">JavaScript</span> </div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 		<script type="application/javascript">
+			document.querySelectorAll('pre code').forEach((block) => {
+				hljs.highlightElement(block);
+			});
 			var scenes = document.getElementsByClassName("scene");
 			var switchPage = function(index) {
 				for (var i = 0; i < scenes.length; i++) {
@@ -506,6 +478,7 @@
 				}
 				window.scroll(0, 0);
 				scenes[index].style.display = "block";
+              scenes[index].style.animation = "1s fade-in forwards";
 			};
 			switchPage(0);
 			var toastInner = "Snackbar";
@@ -552,7 +525,9 @@
 				for (var i = 0; i < all.length; i++) {
 					all[i].style.display = "none";
 				}
+				window.scroll(0, 0);
 				document.getElementById(id).style.display = "block";
+				hljs.initHighlightingOnLoad();
 			};
 			var performSearch = function() {
 				var query = document.querySelector("#search input").value.toLowerCase();
